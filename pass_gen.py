@@ -1,5 +1,6 @@
 import random
 import string
+import pyperclip
 
 choice = int(input("\nEnter 1 to generate a password or 2 to retrive saved password: "))
 
@@ -27,6 +28,9 @@ if choice==1:
         # join function joins the elements of an array into a string
 
         print(f"The password is {password}")
+        pyperclip.copy(password)
+        pyperclip.paste()
+        print("\nPassword copied to clipboard")
         
         # saving the password in a file
         save = int(input("\nDo you want to save this password? 1 for yes, 2 for no: "))
@@ -53,6 +57,10 @@ else:
             #if the keyword is found in the line, it will print the password
             #split splits the line into an array of words
                 print(line.split("\t")[1])
+                password = line.split("Password = ")[1]
+                pyperclip.copy(password)
+                pyperclip.paste()
+                print("\nPassword copied to clipboard")
                 break
         else:
             print("\nPassword not found.")
